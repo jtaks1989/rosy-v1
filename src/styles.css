@@ -1,0 +1,338 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Rosy AI design system.
+ * Warm ivory canvas, deep burgundy primary, dusty rose accent, sage positive.
+ * All colors are oklch semantic tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-surface: var(--surface);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-positive: var(--positive);
+  --color-positive-foreground: var(--positive-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-display: var(--font-sans);
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --shadow-card: 0 1px 2px oklch(0.2 0.01 300 / 4%);
+  --shadow-lift: 0 1px 2px oklch(0.2 0.01 300 / 5%), 0 12px 28px -14px oklch(0.2 0.01 300 / 18%);
+  --gradient-primary: linear-gradient(90deg, var(--primary), color-mix(in oklab, var(--accent) 60%, var(--primary)));
+  --gradient-surface: linear-gradient(180deg, var(--card), var(--card));
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-rise: rise 0.5s var(--ease-out-soft) both;
+  --animate-fade: fade 0.4s var(--ease-out-soft) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-pop: pop 0.35s var(--ease-out-soft) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: -150% 0;
+    }
+    to {
+      background-position: 250% 0;
+    }
+  }
+  @keyframes grow-x {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+
+
+:root {
+  --radius: 0.5rem;
+  /* #FAFAF9 near-white canvas */
+  --background: oklch(0.985 0.001 300);
+  /* #17171A near-black ink */
+  --foreground: oklch(0.19 0.004 285);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --surface: oklch(1 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+  /* #E8123C crimson */
+  --primary: oklch(0.578 0.229 16);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.968 0.002 300);
+  --secondary-foreground: oklch(0.28 0.004 285);
+  --muted: oklch(0.965 0.002 300);
+  --muted-foreground: oklch(0.556 0.008 290);
+  /* rose accent derived from crimson */
+  --accent: oklch(0.7 0.16 12);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.578 0.229 16);
+  --destructive-foreground: oklch(1 0 0);
+  /* #15803D emerald */
+  --positive: oklch(0.53 0.13 152);
+  --positive-foreground: oklch(1 0 0);
+  --warning: oklch(0.72 0.14 72);
+  --warning-foreground: oklch(0.35 0.09 60);
+  --border: oklch(0.923 0.002 300);
+  --input: oklch(0.923 0.002 300);
+  --ring: oklch(0.578 0.229 16);
+  --chart-1: oklch(0.578 0.229 16);
+  --chart-2: oklch(0.7 0.16 12);
+  --chart-3: oklch(0.53 0.13 152);
+  --chart-4: oklch(0.72 0.14 72);
+  --chart-5: oklch(0.48 0.02 290);
+  /* Menu-engineering quadrant palette — consistent across chart, cards and table */
+  --quadrant-star: oklch(0.53 0.13 152);
+  --quadrant-plowhorse: oklch(0.72 0.14 72);
+  --quadrant-puzzle: oklch(0.55 0.12 250);
+  --quadrant-dog: oklch(0.6 0.13 20);
+  --quadrant-unclassified: oklch(0.68 0.01 290);
+  /* #F4F4F3 quiet sidebar */
+  --sidebar: oklch(0.966 0.002 300);
+  --sidebar-foreground: oklch(0.35 0.006 290);
+  --sidebar-primary: oklch(0.578 0.229 16);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(1 0 0);
+  --sidebar-accent-foreground: oklch(0.19 0.004 285);
+  --sidebar-border: oklch(0.916 0.002 300);
+  --sidebar-ring: oklch(0.578 0.229 16);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2 {
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+@utility page-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+/* Small uppercase eyebrow label followed by a hairline rule. */
+@utility eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+}
+
+/* Small pulsing live indicator dot. */
+@utility live-dot {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--positive);
+  box-shadow: 0 0 0 0 color-mix(in oklab, var(--positive) 60%, transparent);
+  animation: live-pulse 2.2s var(--ease-out-soft) infinite;
+}
+
+@keyframes live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--positive) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* Staggered entrance for the direct children of a page region. */
+@utility stagger-in {
+  & > * {
+    animation: var(--animate-rise);
+  }
+  & > *:nth-child(1) {
+    animation-delay: 0ms;
+  }
+  & > *:nth-child(2) {
+    animation-delay: 60ms;
+  }
+  & > *:nth-child(3) {
+    animation-delay: 120ms;
+  }
+  & > *:nth-child(4) {
+    animation-delay: 180ms;
+  }
+  & > *:nth-child(5) {
+    animation-delay: 240ms;
+  }
+  & > *:nth-child(n + 6) {
+    animation-delay: 300ms;
+  }
+}
+
+/* Card hover elevation. */
+@utility lift {
+  transition:
+    transform 0.25s var(--ease-out-soft),
+    box-shadow 0.25s var(--ease-out-soft),
+    border-color 0.25s var(--ease-out-soft);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+    border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
+  }
+}
+
+/* Shimmering loading placeholder. */
+@utility shimmer {
+  background-image: linear-gradient(
+    90deg,
+    var(--muted) 0%,
+    color-mix(in oklab, var(--card) 75%, var(--muted)) 50%,
+    var(--muted) 100%
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* Sliding indicator for the active navigation item. */
+@utility nav-item {
+  position: relative;
+  transition:
+    background-color 0.2s var(--ease-out-soft),
+    color 0.2s var(--ease-out-soft),
+    padding-left 0.2s var(--ease-out-soft);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset-block: 0.3rem;
+    left: 0;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--gradient-primary);
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 0.25s var(--ease-out-soft);
+  }
+
+  &:hover {
+    padding-left: 1rem;
+  }
+}
+
+@utility nav-item-active {
+  &::before {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+

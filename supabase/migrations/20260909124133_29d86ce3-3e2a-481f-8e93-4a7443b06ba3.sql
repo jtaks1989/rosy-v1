@@ -1,0 +1,1 @@
+alter view public.mart_menu_engineering set (security_invoker = true);

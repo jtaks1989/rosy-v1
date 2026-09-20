@@ -1,0 +1,3 @@
+ALTER FUNCTION public.rosy_menu_engineering(date,date,date,date,uuid[],text[],text[],text[],text[],text,numeric,integer,numeric,text,numeric,boolean,text) SECURITY DEFINER;
+REVOKE ALL ON FUNCTION public.rosy_menu_engineering(date,date,date,date,uuid[],text[],text[],text[],text[],text,numeric,integer,numeric,text,numeric,boolean,text) FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION public.rosy_menu_engineering(date,date,date,date,uuid[],text[],text[],text[],text[],text,numeric,integer,numeric,text,numeric,boolean,text) TO authenticated, service_role;
